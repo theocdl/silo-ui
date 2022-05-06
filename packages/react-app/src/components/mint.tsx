@@ -26,8 +26,6 @@ export const Mint = () => {
     const { state, send } = useContractFunction(nftContract, 'addIssuer')
     // let navigate = useNavigate();
 
-    // function addIssuer(string memory _name, string memory _companyInfo)
-
     const onTx = async () => {
 
         setLoading(true)
