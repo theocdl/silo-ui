@@ -27,13 +27,6 @@ export const Mint = () => {
     const { state, send } = useContractFunction(nftContract, 'safeMint')
     let navigate = useNavigate();
 
-    const { value: supply } =
-    useCall({
-    contract: new Contract(addresses.erc721, abis.erc721),
-    method: "totalSupply",
-    args: [] 
-    }) ?? {};
-
     const onTx = async () => {
 
         setLoading(true)
