@@ -1,19 +1,6 @@
-# Mojito [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/julienbrg/mojito/blob/main/LICENSE.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/julienbrg/mojito/issues)
+# Silo UI
 
-Yet another basic minter.
-
-Live demo: [https://mojito-app.netlify.app/](https://mojito-app.netlify.app/)
-
-## Motivation
-
-The create-eth-app team [recently added](https://twitter.com/PaulRBerg/status/1505270274018746368) useDApp in their [v1.8.0](https://github.com/paulrberg/create-eth-app/releases/tag/v1.8.0), so I wanted to build a simple React app that's using:
-
-- [create-eth-app](https://github.com/paulrberg/create-eth-app)
-- [useDApp](https://github.com/TrueFiEng/useDApp)
-- [Web3.Storage](https://web3.storage/)
-- [useNft](https://use-nft.spectre.xyz/)
-- [TheGraph](https://thegraph.com/) ([WIP](https://github.com/julienbrg/mojito/issues/20))
-- [Chakra UI](https://chakra-ui.com/)
+An interface for Silo.
 
 ## Run
 
@@ -25,7 +12,7 @@ yarn && yarn react-app:start
 
 ## Use
 
-Click on the `Mint` button to mint an NFT. ✨
+Click on the `Register` button to get registered. ✨
 
 ## Versions
 
