@@ -77,7 +77,7 @@ export const Mint = () => {
             toast({
                 position: "bottom-left",
                 title: "Insufficient funds 💰",
-                description: "You need a handful of Rinkeby ETH to mint your NFT.",
+                description: "You need a handful of Rinkeby ETH to register.",
                 status: "error",
                 duration: 3000,
                 isClosable: true,
@@ -88,6 +88,24 @@ export const Mint = () => {
                 <></>
             )
         }
+
+        // TODO: add metamask error
+        // if () {
+            
+        //     toast({
+        //         position: "bottom-left",
+        //         title: "",
+        //         description: "Sorry, you can't register twice.",
+        //         status: "error",
+        //         duration: 3000,
+        //         isClosable: true,
+        //     })
+        //     setLoading(false)
+
+        //     return (
+        //         <></>
+        //     )
+        // }
 
     //     function getAccessToken() {
     //         console.log("✅ getAccessToken")            
@@ -153,13 +171,15 @@ export const Mint = () => {
     //     console.log("✅ nft contract address: ", nftContract.address)
 
         await send(
-            "toto",
-            "tata"
+            account,
+            account
         )
     
     //     const id = Number(supply) - 1
     //     const address = nftContract.address
     //     navigate(`/${address}/${id}`);
+    setLoading(false)
+
 
     }
 
@@ -170,7 +190,7 @@ export const Mint = () => {
                 toast({
                 position: "top-left",
                 title: "Success 🎉",
-                description: "You just minted an NFT! Here's your tx hash my friend: " + state.transaction?.hash + ". Thank you for using Mojito app.",
+                description: "Well done! Here's your tx hash my friend: " + state.transaction?.hash + ". Thank you for using Silo app.",
                 status: "success",
                 duration: 8000,
                 isClosable: true,

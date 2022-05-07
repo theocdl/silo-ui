@@ -5844,9 +5844,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"Mojito@workspace:.":
+"Silo@workspace:.":
   version: 0.0.0-use.local
-  resolution: "Mojito@workspace:."
+  resolution: "Silo@workspace:."
   dependencies:
     web3.storage: ^4.0.0
   languageName: unknown
