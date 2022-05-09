@@ -215,7 +215,7 @@ export const Mint = () => {
                 size='md'
                 variant='outline'
                 
-                >Register
+                >Sign up as a compagny
             </Button>}
 
         </>

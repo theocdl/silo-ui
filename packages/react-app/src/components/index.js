@@ -39,6 +39,21 @@ export const Description = styled.div`
   height: calc(1000vh);
 `;
 
+export const input = styled.div`
+   background-color: white;
+  border: none;
+  border-radius: 3px;
+  color: #282c34;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 20px 20px;
+  margin-top: 20px;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  `;
+
+
 export const Details = styled.div`
   
 `;
@@ -70,8 +85,8 @@ export const Loader = styled.img`
 `;
 
 export const Link = styled.a.attrs({
-  target: "_blank",
-  rel: "noopener noreferrer",
+    target: "_blank",
+    rel: "noopener noreferrer",
 })`
   color: #805AD5;
   margin-top: 8px;
