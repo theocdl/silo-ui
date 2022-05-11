@@ -5,8 +5,9 @@ import {Body, Container, Header} from "../components";
 import {Contract} from '@ethersproject/contracts'
 import {addresses, abis} from "@my-app/contracts";
 import {FaEthereum} from "react-icons/fa";
-import {useContractFunction} from "@usedapp/core";
+import {useCall, useContractFunction, useEthers} from "@usedapp/core";
 import {utils} from "ethers";
+
 const nftInterface = new utils.Interface(abis.silo)
 const nftContract = new Contract(addresses.silo, nftInterface)
 
@@ -32,16 +33,43 @@ function WalletButton() {
 
 
 export function IssuerDashboard() {
-    const { state, send:addIssuer } = useContractFunction(nftContract, 'addIssuer')
+    const {account} = useEthers();
+
+    const {value: isRegisteredRaw} =
+    useCall({
+        contract: new Contract(addresses.silo, abis.silo),
+        method: "isAddressExist",
+        args: (account === null || account === undefined) ? ["0x0000000000000000000000000000000000000000"] : [account],
+    }) ?? {};
+
+    if (isRegisteredRaw) {
+        var isRegistered = isRegisteredRaw[0]
+    }
+
+    const {send: addIssuer} = useContractFunction(nftContract, 'addIssuer')
+    const {send: create} = useContractFunction(nftContract, 'create')
 
     const [name, setName] = useState(" ");
     const [info, setInfo] = useState(" ");
+    const [numCompany, setNumCompany] = useState(" ");
+    const [supply, setSupply] = useState(" ");
+    const [price, setPrice] = useState(" ");
+
 
     const nameInput = event => {
         setName(event.target.value);
     };
     const infoInput = event => {
         setInfo(event.target.value);
+    };
+    const numCompanyInput = event => {
+        setNumCompany(event.target.value);
+    };
+    const supplyInput = event => {
+        setSupply(event.target.value);
+    };
+    const priceInput = event => {
+        setPrice(event.target.value);
     };
 
     return (
@@ -51,30 +79,64 @@ export function IssuerDashboard() {
                 <Header>
                     <WalletButton/>
                 </Header>
-                <Input
-                    onChange={nameInput}
-                    margin='4'
-                    type="text" placeholder="Name"/>
-                <Input
-                    onChange={infoInput}
+                {isRegistered === false &&
+                    <>  <Input onChange={nameInput}
+                               margin='4'
+                               type="text" placeholder="Name"/>
 
-                    margin='2'
-                    type="text" placeholder="Compagny Information "/>
+                        <Input onChange={infoInput}
+                               margin='2'
+                               type="text" placeholder="Compagny Information "/>
+                        <Button
+                            onClick={() => {
+                                console.log(name, info);
+                                addIssuer(name, info);
+                            }}
+                            leftIcon={<FaEthereum/>}
+                            colorScheme='purple'
+                            margin='4'
+                            size='sm'
+                            variant='outline'
+                        >
+                            Register
+                        </Button>
+                    </>
+                }
+                {isRegistered === true &&
 
-                <Button
+                    <>  <Input onChange={numCompanyInput}
+                               margin='4'
+                               type="text" placeholder="Number of the company"/>
 
-                    onClick={() => {
-                        console.log(name, info);
-                        addIssuer(name, info);
-                    }}
-                    leftIcon={<FaEthereum />}
-                    colorScheme='purple'
-                    margin='4'
-                    size='sm'
-                    variant='outline'
-                >
-                    Register
-                </Button>
+                        <Input onChange={supplyInput}
+                               margin='4'
+                               type="text" placeholder="Supply"/>
+
+                        <Input onChange={priceInput}
+                               margin='4'
+                               type="text" placeholder="Price"/>
+
+                        <Input onChange={infoInput}
+                               margin='2'
+                               type="text" placeholder="Information of the NFT"/>
+
+                        <Button
+                            onClick={() => {
+                                console.log(numCompany, supply, price, info);
+                                create(numCompany, supply, price, info);
+                            }}
+                            leftIcon={<FaEthereum/>}
+                            colorScheme='purple'
+                            margin='4'
+                            size='sm'
+                            variant='outline'
+                        >
+                            Create
+                        </Button>
+                    </>
+
+                }
+
             </Body>
         </Container>
 
@@ -82,7 +144,6 @@ export function IssuerDashboard() {
     );
 
 }
-
 
 
 export default IssuerDashboard;

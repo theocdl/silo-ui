@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Body, Container, Header} from "../components";
-import {Mint} from '../components/mint'
+//import {Mint} from '../components/mint'
 import {Button} from '@chakra-ui/react'
 import {Contract} from '@ethersproject/contracts'
 import {useEthers, useCall, shortenAddress, useLookupAddress} from '@usedapp/core'
@@ -93,9 +93,8 @@ export function Home() {
                     size='md'
                     variant='outline'
                 >
-                    Register
+                    Company
                 </Button>
-
 
             </Body>
         </Container>
