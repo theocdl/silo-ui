@@ -7,6 +7,7 @@ import {useEthers, useCall, shortenAddress, useLookupAddress} from '@usedapp/cor
 import {addresses, abis} from "@my-app/contracts";
 import {Loader} from "../components";
 import loader from "../assets/reggae-loader.svg";
+import silo from "../assets/ble.jpg";
 import { useNavigate } from "react-router-dom";
 
 function WalletButton() {
@@ -76,7 +77,12 @@ export function Home() {
                 <WalletButton/>
             </Header>
             <Body>
+                <p style={{color: 'rgb(106, 2, 224)'}}>WELCOME TO SILO ! </p>
+                <p style={{color: 'black'}}>.</p>
 
+                <img src={silo}/>
+
+                <p style={{color: 'black'}}>.</p>
                 {isRegistered === undefined && <Loader src={loader}/>}
                 {isRegistered === true && <p>You are registered! ✨</p>}
                 {isRegistered === false && <p>You are NOT registered.</p>}

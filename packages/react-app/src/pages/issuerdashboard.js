@@ -31,6 +31,17 @@ function WalletButton() {
     );
 }
 
+function Between2lines() {
+
+    return (
+        <><p style={{color: 'black'}}>.</p><p
+            style={{color: 'rgb(106, 2, 224)'}}>-------------------------------------------</p><p
+            style={{color: 'black'}}>.</p>
+        </>
+
+    );
+}
+
 
 export function IssuerDashboard() {
     const {account} = useEthers();
@@ -81,7 +92,7 @@ export function IssuerDashboard() {
                 <Header>
                     <WalletButton/>
                 </Header>
-                <p style={{color: 'mediumpurple'}}>-------------------------------------------</p>
+                <Between2lines/>
 
                 {isRegistered === false &&
                     <>  <Input onChange={nameInput}
@@ -140,7 +151,7 @@ export function IssuerDashboard() {
                             Create
                         </Button>
 
-                        <p style={{color: 'mediumpurple'}}>-------------------------------------------</p>
+                        <Between2lines/>
                         <p>Change the Information of the company</p>
 
                         <Input onChange={numCompanyInput}
@@ -166,7 +177,7 @@ export function IssuerDashboard() {
                         </Button>
 
 
-                        <p style={{color: 'mediumpurple'}}>-------------------------------------------</p>
+                        <Between2lines/>
                         <p>Change the price for the NFT</p>
 
                         <Input onChange={numCompanyInput}
@@ -191,11 +202,7 @@ export function IssuerDashboard() {
                             Change price
                         </Button>
 
-
-
                     </>
-
-
                 }
 
             </Body>
