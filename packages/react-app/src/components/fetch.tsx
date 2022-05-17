@@ -2,7 +2,7 @@ import { useEthers } from "@usedapp/core";
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import GET_TRANSFERS from "../graphql/subgraph";
-import { ethers } from "ethers"
+import { ethers } from "ethers";
 
 export function FetchData() {
 

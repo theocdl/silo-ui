@@ -9,7 +9,7 @@ function App() {
     return (
 
         <Routes>
-            <Route path="/home" element={<Home/>}/>
+            <Route path="/" element={<Home/>}/>
             <Route path=':address/:id' element={<Nft/>}/>
             <Route path='/issuerDa' element={<IssuerDashboard/>}/>
             <Route path="*" element={<NotFound/>}/>

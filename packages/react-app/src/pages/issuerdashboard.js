@@ -19,7 +19,7 @@ function WalletButton() {
         <Button
 
             onClick={() => {
-                navigate(`/home`);
+                navigate(`/`);
             }}
             colorScheme='purple'
             margin='4'
@@ -46,8 +46,10 @@ export function IssuerDashboard() {
         var isRegistered = isRegisteredRaw[0]
     }
 
-    const {send: addIssuer} = useContractFunction(nftContract, 'addIssuer')
-    const {send: create} = useContractFunction(nftContract, 'create')
+    const {send: addIssuer} = useContractFunction(nftContract, 'addIssuer');
+    const {send: create} = useContractFunction(nftContract, 'create');
+    const {send: changeInfo} = useContractFunction(nftContract, 'changeCompanyInfo')
+    const {send: changePrice} = useContractFunction(nftContract, 'changePrice')
 
     const [name, setName] = useState(" ");
     const [info, setInfo] = useState(" ");
@@ -79,6 +81,8 @@ export function IssuerDashboard() {
                 <Header>
                     <WalletButton/>
                 </Header>
+                <p style={{color: 'mediumpurple'}}>-------------------------------------------</p>
+
                 {isRegistered === false &&
                     <>  <Input onChange={nameInput}
                                margin='4'
@@ -103,8 +107,10 @@ export function IssuerDashboard() {
                     </>
                 }
                 {isRegistered === true &&
+                    <>
+                        <p>Create</p>
 
-                    <>  <Input onChange={numCompanyInput}
+                        <Input onChange={numCompanyInput}
                                margin='4'
                                type="text" placeholder="Number of the company"/>
 
@@ -133,7 +139,62 @@ export function IssuerDashboard() {
                         >
                             Create
                         </Button>
+
+                        <p style={{color: 'mediumpurple'}}>-------------------------------------------</p>
+                        <p>Change the Information of the company</p>
+
+                        <Input onChange={numCompanyInput}
+                               margin='4'
+                               type="text" placeholder="Number of the company"/>
+
+                        <Input onChange={infoInput}
+                               margin='2'
+                               type="text" placeholder="New Information of the compagny"/>
+
+                        <Button
+                            onClick={() => {
+                                console.log(numCompany, info);
+                                changeInfo(numCompany, info);
+                            }}
+                            leftIcon={<FaEthereum/>}
+                            colorScheme='purple'
+                            margin='4'
+                            size='sm'
+                            variant='outline'
+                        >
+                            Change company information
+                        </Button>
+
+
+                        <p style={{color: 'mediumpurple'}}>-------------------------------------------</p>
+                        <p>Change the price for the NFT</p>
+
+                        <Input onChange={numCompanyInput}
+                               margin='4'
+                               type="text" placeholder="Number of the company"/>
+
+                        <Input onChange={priceInput}
+                               margin='2'
+                               type="text" placeholder="New price"/>
+
+                        <Button
+                            onClick={() => {
+                                console.log(numCompany, price);
+                                changePrice(numCompany, price);
+                            }}
+                            leftIcon={<FaEthereum/>}
+                            colorScheme='purple'
+                            margin='4'
+                            size='sm'
+                            variant='outline'
+                        >
+                            Change price
+                        </Button>
+
+
+
                     </>
+
 
                 }
 

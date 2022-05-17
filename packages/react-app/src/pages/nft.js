@@ -21,7 +21,7 @@ function WalletButton() {
         <Button
 
             onClick={() => {
-                navigate(`/home`);
+                navigate(`/`);
             }}
             colorScheme='purple'
             margin='4'

@@ -10,6 +10,7 @@ export const Body = styled.div`
   padding: 5% 20%;
 `;
 
+
 export const Button = styled.button`
   background-color: white;
   border: none;
@@ -67,6 +68,7 @@ export const Header = styled.header`
   justify-content: flex-end;
   min-height: 70px;
 `;
+
 
 export const Image = styled.img`
   height: 40vmin;
