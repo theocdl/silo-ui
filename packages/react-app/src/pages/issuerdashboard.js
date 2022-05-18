@@ -1,4 +1,4 @@
-import {Button, Input, div} from '@chakra-ui/react'
+import {Button, Input} from '@chakra-ui/react'
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Body, Container, Header} from "../components";
@@ -38,7 +38,7 @@ function Between2lines() {
         <>
             <p style={{
                 borderTop: '1px solid ',
-                borderTopColor: 'rgb(106, 2, 224)',
+                borderTopColor: 'rgb(256, 256, 256)',
                 margin: '20px',
                 width: '500px'
             }}/>
@@ -100,7 +100,10 @@ export function IssuerDashboard() {
                 <Between2lines/>
 
                 {isRegistered === false &&
-                    <>  <Input onChange={nameInput}
+                    <>
+                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle:'Italic', fontSize:'40'}}>Register</p>
+
+                        <Input onChange={nameInput}
                                margin='4'
                                type="text" placeholder="Name"/>
 
@@ -124,7 +127,7 @@ export function IssuerDashboard() {
                 }
                 {isRegistered === true &&
                     <>
-                        <p>Create</p>
+                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle:'Italic', fontSize:'40'}}>Create NFT</p>
 
                         <Input onChange={numCompanyInput}
                                margin='4'
@@ -157,7 +160,7 @@ export function IssuerDashboard() {
                         </Button>
 
                         <Between2lines/>
-                        <p>Change the Information of the company</p>
+                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle:'Italic', fontSize:'40'}}>Change the Information of the company</p>
 
                         <Input onChange={numCompanyInput}
                                margin='4'
@@ -182,7 +185,7 @@ export function IssuerDashboard() {
                         </Button>
 
                         <Between2lines/>
-                        <p>Change the price for the NFT</p>
+                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle:'Italic', fontSize:'40'}}>Change the price for the NFT</p>
 
                         <Input onChange={numCompanyInput}
                                margin='4'

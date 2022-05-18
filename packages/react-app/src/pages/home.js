@@ -8,7 +8,7 @@ import {addresses, abis} from "@my-app/contracts";
 import {Loader} from "../components";
 import loader from "../assets/reggae-loader.svg";
 import silo from "../assets/ble.jpg";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function WalletButton() {
     const [rendered, setRendered] = useState("");
@@ -60,7 +60,13 @@ export function Home() {
     const {account} = useEthers();
 
     const {value: isRegisteredRaw} =
+    useCall({
+        contract: new Contract(addresses.silo, abis.silo),
+        method: "isAddressExist",
+        args: (account === null || account === undefined) ? ["0x0000000000000000000000000000000000000000"] : [account],
+    }) ?? {};
 
+    const {value: numberIssuer} =
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
         method: "isAddressExist",
@@ -77,7 +83,7 @@ export function Home() {
                 <WalletButton/>
             </Header>
             <Body>
-                <p style={{color: 'rgb(106, 2, 224)'}}>WELCOME TO SILO ! </p>
+                <p style={{color: '#F6CF6C'}}> 🌽 WELCOME TO SILO 🌽 </p>
                 <p style={{color: 'black'}}>.</p>
 
                 <img src={silo}/>
