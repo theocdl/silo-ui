@@ -1,4 +1,4 @@
-import {Button, Input} from '@chakra-ui/react'
+import {Button, Input, div} from '@chakra-ui/react'
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Body, Container, Header} from "../components";
@@ -34,9 +34,14 @@ function WalletButton() {
 function Between2lines() {
 
     return (
-        <><p style={{color: 'black'}}>.</p><p
-            style={{color: 'rgb(106, 2, 224)'}}>-------------------------------------------</p><p
-            style={{color: 'black'}}>.</p>
+
+        <>
+            <p style={{
+                borderTop: '1px solid ',
+                borderTopColor: 'rgb(106, 2, 224)',
+                margin: '20px',
+                width: '500px'
+            }}/>
         </>
 
     );
@@ -176,7 +181,6 @@ export function IssuerDashboard() {
                             Change company information
                         </Button>
 
-
                         <Between2lines/>
                         <p>Change the price for the NFT</p>
 
@@ -204,6 +208,7 @@ export function IssuerDashboard() {
 
                     </>
                 }
+
 
             </Body>
         </Container>

@@ -87,10 +87,7 @@ export function Home() {
                 {isRegistered === true && <p>You are registered! ✨</p>}
                 {isRegistered === false && <p>You are NOT registered.</p>}
 
-
-
                 <Button
-
                     onClick={() => {
                         navigate(`/issuerDa`);
                     }}
