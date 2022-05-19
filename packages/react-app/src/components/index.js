@@ -28,7 +28,7 @@ export const Container = styled.div`
   background-color: #000000;
   display: flex;
   flex-direction: column;
-  height: calc(1000vh);
+  height: 100%;
   text-align: left;
   
 `;
@@ -39,8 +39,8 @@ export const Description = styled.div`
   flex-direction: column;
   height: calc(1000vh);
 `;
-
-export const input = styled.div`
+/*
+export const input = styled.input`
    background-color: white;
   border: none;
   border-radius: 3px;
@@ -53,7 +53,7 @@ export const input = styled.div`
   text-align: center;
   text-decoration: none;
   `;
-
+*/
 
 export const Details = styled.div`
   

@@ -10,6 +10,7 @@ import loader from "../assets/reggae-loader.svg";
 import silo from "../assets/ble.jpg";
 import {useNavigate} from "react-router-dom";
 
+
 function WalletButton() {
     const [rendered, setRendered] = useState("");
 
@@ -52,9 +53,44 @@ function WalletButton() {
         </Button>
     );
 }
+/**
+function Issuer() {
+    const navigate = useNavigate();
+
+    const {value: numberOfIssuer} =
+    useCall({
+        contract: new Contract(addresses.silo, abis.silo),
+        method: "numIssuer",
+    }) ?? {};
+    const number = parseInt(numberOfIssuer);
+
+    let issuer = [];
+
+    const {value: info} =
+    useCall({
+        contract: new Contract(addresses.silo, abis.silo),
+        method: "issuer",
+        args: "0",
+    }) ?? {};
+
+    issuer.push(<Button
+        onClick={() => {
+            navigate(`/nft`);
+        }}
+        colorScheme='purple'
+        margin='4'
+        size='md'
+        variant='outline'
+    >
+        {info}
+    </Button>)
+
+    return (
+        <p>{issuer}</p>
+    );
+}*/
 
 export function Home() {
-
     const navigate = useNavigate();
 
     const {account} = useEthers();
@@ -104,6 +140,7 @@ export function Home() {
                 >
                     Company
                 </Button>
+
 
             </Body>
         </Container>

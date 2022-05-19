@@ -8,6 +8,7 @@ import {FaEthereum} from "react-icons/fa";
 import {useCall, useContractFunction, useEthers} from "@usedapp/core";
 import {utils} from "ethers";
 
+
 const nftInterface = new utils.Interface(abis.silo)
 const nftContract = new Contract(addresses.silo, nftInterface)
 
@@ -94,9 +95,13 @@ export function IssuerDashboard() {
         <Container>
 
             <Body>
+                <p style={{color: '#F6CF6C'}}> 🌽 WELCOME TO SILO 🌽 </p>
+                <p style={{color: 'black'}}>.</p>
+
                 <Header>
                     <WalletButton/>
                 </Header>
+
                 <Between2lines/>
 
                 {isRegistered === false &&
