@@ -36,7 +36,7 @@ function WalletButton() {
 
 export function Nft() {
     const params = useParams()
-    console.log(params);
+    console.log("params.username", params );
     //const num = params.substr(1);
 
    /* const {value: info} =
