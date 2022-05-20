@@ -1,7 +1,7 @@
 import {Button, Input} from '@chakra-ui/react'
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {Body, Container, Header} from "../components";
 import {Contract} from '@ethersproject/contracts'
 import {addresses, abis} from "@my-app/contracts";
@@ -12,6 +12,10 @@ import silo from "../assets/silo.png";
 
 const nftInterface = new utils.Interface(abis.silo)
 const nftContract = new Contract(addresses.silo, nftInterface)
+
+const daiInterface = new utils.Interface(abis.dai)
+const daitContract = new Contract(addresses.dai, daiInterface)
+
 
 function WalletButton() {
 
@@ -37,67 +41,67 @@ function WalletButton() {
 
 
 export function Nft() {
-    
     const params = useParams()
-    console.log("params", params.username );
-    //const num = params.substr(1);
 
-     const {value: info} =
+    const {send: buy} = useContractFunction(nftContract, 'buy');
+    const {send: getDai} = useContractFunction(daitContract, 'withdraw');
+
+    const {value: info} =
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
         method: "issuer",
         args: [params.username],
     }) ?? {};
 
-    const res = params;
-
-    console.log("res", res );
-
     let infoString = String(info);
-
-    console.log("info", info );
-
-
     let tab = infoString.split(",", 32);
     let name = tab[0];
-
     let meta = tab[3];
 
-    
-        // console.log("yo")
-        const {send: buy} = useContractFunction(nftContract, 'buy');
 
-    
     return (
         <Container>
             <Body>
 
-            <p style={{color: '#F6CF6C',margin: '20px'}}> 🌽 WELCOME TO SILO 🌽 </p>
+                <p style={{color: '#F6CF6C', margin: '20px'}}> 🌽 WELCOME TO SILO 🌽 </p>
 
-            <Header>
-                <WalletButton/>
-            </Header>
+                <Header>
+                    <WalletButton/>
+                </Header>
 
 
-                <h2 style={{margin: '20px'}}><strong>{name}</strong></h2>
+                <h2 style={{color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
                 <h3 style={{margin: '20px'}}>{meta}</h3>
 
                 <Button
 
-            onClick={buy(params.username)}
-            colorScheme='purple'
-            margin='4'
-            size='lg'
-            variant='outline'
-        >
-            Buy
-        </Button>
+                    onClick={() => {
+                        buy(params.username);
+                    }}
+                    colorScheme='purple'
+                    margin='4'
+                    size='lg'
+                    variant='outline'
+                >
+                    Buy
+                </Button>
 
-                <img src={silo}/>
+                <img src={silo} style={{width: '300px',
+                    height : '300px'}}/>
 
-                
 
+                <Button
 
+                    onClick={() => {
+                        getDai();
+                    }}
+                    colorScheme='yellow'
+                    margin='4'
+                    size='sm'
+                    variant='outline'
+                >
+                    Get some DAI
+                </Button>
             </Body>
         </Container>
     );

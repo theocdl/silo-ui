@@ -80,9 +80,6 @@ function Issuer() {
     let tab = infoString.split(",", 32);
     nameIssuer = tab[0];
     nameIssuerNumber = tab[1];
-    // console.log("nameIssuerNumber: ", nameIssuerNumber);
-    // console.log("tab: ", tab);
-    // console.log("hello");
 
     issuer.push(<Button
         onClick={() => {
