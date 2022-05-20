@@ -10,6 +10,8 @@ import {useCall, useContractFunction, useEthers} from "@usedapp/core";
 import {utils} from "ethers";
 import silo from "../assets/silo.png";
 
+const nftInterface = new utils.Interface(abis.silo)
+const nftContract = new Contract(addresses.silo, nftInterface)
 
 function WalletButton() {
 
@@ -35,21 +37,37 @@ function WalletButton() {
 
 
 export function Nft() {
+    
     const params = useParams()
-    console.log("params.username", params );
+    console.log("params", params.username );
     //const num = params.substr(1);
 
-   /* const {value: info} =
+     const {value: info} =
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
         method: "issuer",
-        args: [params],
+        args: [params.username],
     }) ?? {};
 
+    const res = params;
+
+    console.log("res", res );
+
     let infoString = String(info);
+
+    console.log("info", info );
+
+
     let tab = infoString.split(",", 32);
     let name = tab[0];
-*/
+
+    let meta = tab[3];
+
+    
+        // console.log("yo")
+        const {send: buy} = useContractFunction(nftContract, 'buy');
+
+    
     return (
         <Container>
             <Body>
@@ -61,8 +79,23 @@ export function Nft() {
             </Header>
 
 
-                <h2 style={{margin: '20px'}}><strong>ok</strong></h2>
+                <h2 style={{margin: '20px'}}><strong>{name}</strong></h2>
+                <h3 style={{margin: '20px'}}>{meta}</h3>
+
+                <Button
+
+            onClick={buy(params.username)}
+            colorScheme='purple'
+            margin='4'
+            size='lg'
+            variant='outline'
+        >
+            Buy
+        </Button>
+
                 <img src={silo}/>
+
+                
 
 
             </Body>
