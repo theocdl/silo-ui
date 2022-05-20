@@ -44,6 +44,7 @@ export function Nft() {
     const params = useParams()
 
     const {send: buy} = useContractFunction(nftContract, 'buy');
+    const {send: approve} = useContractFunction(nftContract, 'approve');
     const {send: getDai} = useContractFunction(daitContract, 'withdraw');
 
     const {value: info} =
@@ -53,10 +54,25 @@ export function Nft() {
         args: [params.username],
     }) ?? {};
 
+    const {value: nft} =
+    useCall({
+        contract: new Contract(addresses.silo, abis.silo),
+        method: "getItem",
+        args: [params.username],
+    }) ?? {};
+
     let infoString = String(info);
-    let tab = infoString.split(",", 32);
-    let name = tab[0];
-    let meta = tab[3];
+    let tabIssuer = infoString.split(",", 32);
+    let nftString = String(nft);
+    let tabNFT = nftString.split(",", 32);
+
+    let name = tabIssuer[0];
+    let meta = tabIssuer[3];
+    let supply = tabIssuer[4];
+
+    let price = tabNFT[0];
+
+
 
 
     return (
@@ -71,11 +87,12 @@ export function Nft() {
 
 
                 <h2 style={{color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
-                <h3 style={{margin: '20px'}}>{meta}</h3>
+                <h3 style={{margin: '20px'}}>{price}</h3>
 
                 <Button
 
                     onClick={() => {
+                        approve(addresses.silo, price);
                         buy(params.username);
                     }}
                     colorScheme='purple'
