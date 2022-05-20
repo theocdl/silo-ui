@@ -10,7 +10,7 @@ function App() {
 
         <Routes>
             <Route path="/" element={<Home/>}/>
-            <Route path=':address/:id' element={<Nft/>}/>
+            <Route path='/nft/:username' element={<Nft/>}/>
             <Route path='/issuerDa' element={<IssuerDashboard/>}/>
             <Route path="*" element={<NotFound/>}/>
 

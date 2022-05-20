@@ -1,16 +1,15 @@
-import {useParams} from "react-router-dom";
-import {Description, Media, Loader, Link} from "../components";
-import {Body, Container, Header} from "../components";
-import {FetchData} from '../components/fetch'
-// import myImage from "../assets/lode-runner.png";
-import {Button, Tooltip, Badge, Stack} from '@chakra-ui/react'
+import {Button, Input} from '@chakra-ui/react'
+import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-// import { useEffect, useState } from 'react'
-import {useEthers, useCall} from '@usedapp/core'
+import { useParams } from 'react-router-dom';
+import {Body, Container, Header} from "../components";
 import {Contract} from '@ethersproject/contracts'
 import {addresses, abis} from "@my-app/contracts";
-import loader from "../assets/reggae-loader.svg";
-import {useNft} from "use-nft"
+import {FaEthereum} from "react-icons/fa";
+import {useCall, useContractFunction, useEthers} from "@usedapp/core";
+import {utils} from "ethers";
+import silo from "../assets/silo.png";
+
 
 function WalletButton() {
 
@@ -36,158 +35,38 @@ function WalletButton() {
 
 
 export function Nft() {
+    const params = useParams()
+    console.log(params);
+    //const num = params.substr(1);
 
-    const {address, id} = useParams()
-
-    console.log("✅ nft contract address: ", address)
-    console.log("✅ nft id: ", id)
-
-    const {account} = useEthers();
-
-    // const { value: name } =
-    // useCall({
-    // contract: new Contract(addresses.erc721, abis.erc721),
-    // method: "name",
-    // args: [],
-    // }) ?? {};
-
-    const {value: tokenURI} =
+   /* const {value: info} =
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
-        method: "tokenURI",
-        args: [id],
+        method: "issuer",
+        args: [params],
     }) ?? {};
 
-    const {value: bal} =
-    useCall({
-        contract: new Contract(addresses.silo, abis.silo),
-        method: "isAddressExist",
-        args: [account],
-    }) ?? {};
-
-    const openseaUrl = "https://testnets.opensea.io/assets/0xC5c7C45eEA8F11760d5e63d9CB7c7AE46B3de635/" + id
-    const etherscanUrl = "https://rinkeby.etherscan.io/address/" + address
-
-    const {loading, error, nft} = useNft(
-        address,
-        id
-    )
-
-    if (loading) return (
-        <Container>
-            <Header>
-                <WalletButton/>
-            </Header>
-            <Body>
-                <Loader src={loader}/>
-            </Body>
-        </Container>
-    )
-
-    if (error || !nft) return (
-        <Container>
-            <Header>
-                <WalletButton/>
-            </Header>
-            <Body>
-                <Loader src={loader}/>
-            </Body>
-        </Container>
-    )
-
-    console.log("✅ nft license: ", nft.rawData.attributes[1].value)
-    console.log("✅ nft license: ", nft.rawData.license)
-
-    if (nft.rawData.license === "无") {
-
-    }
-
-    // const mintedOn = "Āto"
-    const mintedOn = nft.rawData.attributes[0].value
-    const licenseType = nft.rawData.attributes[1].value // "Public use for all purposes + Right to adapt + Right to add a logo + Merchandising rights" --> Careful: this will change in v2
-    const resaleRights = nft.rawData.attributes[2].value // able to double (or even triple!) check
-    const licenceLink = nft.rawData.attributes[3].value // url expected here
-
+    let infoString = String(info);
+    let tab = infoString.split(",", 32);
+    let name = tab[0];
+*/
     return (
         <Container>
-            <Header>
-                <FetchData/>
-                <WalletButton/>
-            </Header>
             <Body>
 
-                {loading === true || bal === null || bal === undefined ?
+            <p style={{color: '#F6CF6C',margin: '20px'}}> 🌽 WELCOME TO SILO 🌽 </p>
 
-                    <Loader src={loader}/> : <>
-
-                        <h2><strong>{nft.name}</strong></h2>
-
-                        <p><i>by</i> <strong><small>{nft.rawData.author}</small></strong></p>
-
-                        <Media src={nft.image} alt=""/>
-
-                        <Description>
-                            <small>{nft.description}</small>
-
-                            <br/>
-
-                            <small><p>Properties</p></small>
-                            <Stack direction='row'>
-
-                                <Badge variant='outline' colorScheme='green'>
-                                    {mintedOn}
-                                </Badge>
-                                <Badge variant='outline' colorScheme='green'>
-                                    {licenseType}
-                                </Badge>
-                                <Badge variant='outline' colorScheme='green'>
-                                    {resaleRights}%
-                                </Badge>
-                                <Badge variant='outline' colorScheme='green'>
-                                    {licenceLink}
-                                </Badge>
-                            </Stack>
-
-                            <br/>
-
-                            <p><small>You own <strong>{bal.toString()}</strong> of these.</small></p>
-                            <p><small>
-
-                                {
-                                    nft.rawData.license === "无" ?
-
-                                        <Tooltip hasArrow
-                                                 label='The issuer of this NFT keeps all IP rights on the artwork associated 😿'
-                                                 bg='red.600'>
-                                            <Link href="https://ato.works/"><strong style={{color: 'red'}}>No license
-                                                detected </strong></Link>
-                                        </Tooltip> :
-
-                                        <Tooltip hasArrow label='All good 👍' bg='green.600'>
-                                            <Link href="https://ato.works/"><strong style={{color: 'green'}}>Proper IP
-                                                license detected </strong></Link>
-                                        </Tooltip>}
-
-                                | <Link href={etherscanUrl}>Etherscan </Link>
-
-                                |
-                                <Tooltip hasArrow
-                                         label='Sometimes it takes a lot of time to display your NFT in OpenSea 😿'
-                                         bg='red.600'>
-                                    <Link href={openseaUrl}> OpenSea </Link>
-                                </Tooltip>
+            <Header>
+                <WalletButton/>
+            </Header>
 
 
-                                | <Link href={tokenURI}>Metadata</Link></small></p>
+                <h2 style={{margin: '20px'}}><strong>ok</strong></h2>
+                <img src={silo}/>
 
-                            <br/><br/>
-                            {/* <FetchData /> */}
-
-                        </Description></>}
 
             </Body>
         </Container>
     );
 }
 
-  

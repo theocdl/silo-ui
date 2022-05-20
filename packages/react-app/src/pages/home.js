@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Body, Container, Header} from "../components";
 //import {Mint} from '../components/mint'
 import {Button} from '@chakra-ui/react'
@@ -53,8 +53,11 @@ function WalletButton() {
         </Button>
     );
 }
-/**
+
 function Issuer() {
+    let nameIssuer;
+    let nameIssuerNumber ;
+
     const navigate = useNavigate();
 
     const {value: numberOfIssuer} =
@@ -62,7 +65,7 @@ function Issuer() {
         contract: new Contract(addresses.silo, abis.silo),
         method: "numIssuer",
     }) ?? {};
-    const number = parseInt(numberOfIssuer);
+    const number = parseInt(numberOfIssuer) - 1;
 
     let issuer = [];
 
@@ -70,25 +73,32 @@ function Issuer() {
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
         method: "issuer",
-        args: "0",
+        args: [number],
     }) ?? {};
+
+    let infoString = String(info);
+    let tab = infoString.split(",", 32);
+    nameIssuer = tab[0];
+    nameIssuerNumber = tab[1];
+    //console.log(nameIssuerNumber);
 
     issuer.push(<Button
         onClick={() => {
-            navigate(`/nft`);
+            navigate(`/nft/:nameIssuerNumber`,
+            {nameIssuerNumber})
         }}
         colorScheme='purple'
         margin='4'
         size='md'
         variant='outline'
     >
-        {info}
+        {nameIssuer}
     </Button>)
 
     return (
         <p>{issuer}</p>
     );
-}*/
+}
 
 export function Home() {
     const navigate = useNavigate();
@@ -96,13 +106,6 @@ export function Home() {
     const {account} = useEthers();
 
     const {value: isRegisteredRaw} =
-    useCall({
-        contract: new Contract(addresses.silo, abis.silo),
-        method: "isAddressExist",
-        args: (account === null || account === undefined) ? ["0x0000000000000000000000000000000000000000"] : [account],
-    }) ?? {};
-
-    const {value: numberIssuer} =
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
         method: "isAddressExist",
@@ -119,8 +122,7 @@ export function Home() {
                 <WalletButton/>
             </Header>
             <Body>
-                <p style={{color: '#F6CF6C'}}> 🌽 WELCOME TO SILO 🌽 </p>
-                <p style={{color: 'black'}}>.</p>
+                <p style={{color: '#F6CF6C', margin: '20px'}}> 🌽 WELCOME TO SILO 🌽 </p>
 
                 <img src={silo}/>
 
@@ -141,6 +143,15 @@ export function Home() {
                     Company
                 </Button>
 
+                <p style={{
+                    borderTop: '1px solid ',
+                    borderTopColor: 'rgb(256, 256, 256)',
+                    margin: '20px',
+                    width: '500px'
+                }}/>
+                <p style={{color: '#F6CF6C', margin: '20px'}}> All the company who are register </p>
+
+                <Issuer/>
 
             </Body>
         </Container>
