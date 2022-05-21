@@ -39,21 +39,6 @@ export const Description = styled.div`
   flex-direction: column;
   height: calc(1000vh);
 `;
-/*
-export const input = styled.input`
-   background-color: white;
-  border: none;
-  border-radius: 3px;
-  color: #282c34;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 20px 20px;
-  margin-top: 20px;
-  padding: 12px 24px;
-  text-align: center;
-  text-decoration: none;
-  `;
-*/
 
 export const Details = styled.div`
   

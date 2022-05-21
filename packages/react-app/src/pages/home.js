@@ -9,6 +9,7 @@ import {Loader} from "../components";
 import loader from "../assets/reggae-loader.svg";
 import silo from "../assets/ble.jpg";
 import {useNavigate} from "react-router-dom";
+import {wait} from "@testing-library/user-event/dist/utils";
 
 
 function WalletButton() {
@@ -56,7 +57,8 @@ function WalletButton() {
 
 function Issuer() {
     let nameIssuer;
-    let nameIssuerNumber ;
+    let nameIssuerNumber;
+    let supplyNFT;
 
     const navigate = useNavigate();
 
@@ -65,10 +67,11 @@ function Issuer() {
         contract: new Contract(addresses.silo, abis.silo),
         method: "numIssuer",
     }) ?? {};
-    const number = parseInt(numberOfIssuer) - 1;
+    let number = parseInt(numberOfIssuer) - 1;
+    number = 1
+
 
     let issuer = [];
-
     const {value: info} =
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
@@ -80,20 +83,21 @@ function Issuer() {
     let tab = infoString.split(",", 32);
     nameIssuer = tab[0];
     nameIssuerNumber = tab[1];
-
-    issuer.push(<Button
-        onClick={() => {
-            navigate(`/nft/${nameIssuerNumber}`,
-            {nameIssuerNumber})
-        }}
-        colorScheme='purple'
-        margin='4'
-        size='md'
-        variant='outline'
-    >
-        {nameIssuer}
-    </Button>)
-
+    supplyNFT = tab[4];
+    if (supplyNFT !== "0") {
+        issuer.push(<Button
+            onClick={() => {
+                navigate(`/nft/${nameIssuerNumber}`,
+                    {nameIssuerNumber})
+            }}
+            colorScheme='purple'
+            margin='4'
+            size='md'
+            variant='outline'
+        >
+            {nameIssuer}
+        </Button>)
+    }
     return (
         <p>{issuer}</p>
     );
@@ -120,8 +124,8 @@ export function Home() {
             <Header>
                 <WalletButton/>
             </Header>
+            <p style={{color: '#F6CF6C', fontSize: '25px', textAlign: 'center'}}> 🌽 WELCOME TO SILO 🌽 </p>
             <Body>
-                <p style={{color: '#F6CF6C', margin: '20px'}}> 🌽 WELCOME TO SILO 🌽 </p>
 
                 <img src={silo}/>
 

@@ -93,15 +93,12 @@ export function IssuerDashboard() {
 
     return (
         <Container>
+            <Header>
+                <WalletButton/>
+            </Header>
+            <p style={{color: '#F6CF6C', fontSize:'25px', textAlign: 'center'}}> 🌽 WELCOME TO SILO 🌽 </p>
 
             <Body>
-                <p style={{color: '#F6CF6C'}}> 🌽 WELCOME TO SILO 🌽 </p>
-                <p style={{color: 'black'}}>.</p>
-
-                <Header>
-                    <WalletButton/>
-                </Header>
-
                 <Between2lines/>
 
                 {isRegistered === false &&

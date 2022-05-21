@@ -89,21 +89,20 @@ export function Nft() {
     let name = tabIssuer[0];
     let meta = tabIssuer[3];
     let supply = tabIssuer[4];
-
     let price = tabNFT[0];
     let metaNFT = tabNFT[3];
+
 
     const etherscanUrl = "https://rinkeby.etherscan.io/address/" + addresses.silo;
 
     return (
         <Container>
+            <Header>
+                <WalletButton/>
+            </Header>
+            <p style={{color: '#F6CF6C', fontSize: '25px', textAlign: 'center'}}> 🌽 WELCOME TO SILO 🌽 </p>
             <Body>
 
-                <p style={{color: '#F6CF6C', margin: '10px'}}> 🌽 WELCOME TO SILO 🌽 </p>
-
-                <Header>
-                    <WalletButton/>
-                </Header>
                 <Button
 
                     onClick={() => {
@@ -126,7 +125,7 @@ export function Nft() {
                 }}/>
 
                 <p style={{fontSize: '18px', marginTop: '10px'}}>Supply : {supply}</p>
-                <p style={{fontSize: '18px', margin: '5px'}}>Price for one share : {price} DAI</p>
+                {supply !== "0" && <p style={{fontSize: '18px', margin: '5px'}}>Price for one share : {price} DAI</p>}
 
                 <Button
 
@@ -157,7 +156,9 @@ export function Nft() {
                     }}/>
                     <ul><small><Link href={etherscanUrl}>Etherscan</Link></small></ul>
 
-                    <p style={{marginLeft: '15px'}}><smal>🖼️</smal></p>
+                    <p style={{marginLeft: '15px'}}>
+                        <smal>🖼️</smal>
+                    </p>
                     <ul><small><Link href={metaNFT}>Metadata NFT</Link></small></ul>
 
                 </Header>
