@@ -91,6 +91,8 @@ export const Link = styled.a.attrs({
     rel: "noopener noreferrer",
 })`
   color: #805AD5;
-  margin-top: 8px;
+  margin: 5px;
+  text-decoration: underline;
+
 `;
 

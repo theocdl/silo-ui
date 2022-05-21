@@ -9,6 +9,9 @@ import {FaEthereum} from "react-icons/fa";
 import {useCall, useContractFunction, useEthers} from "@usedapp/core";
 import {ethers, utils} from "ethers";
 import silo from "../assets/silo.png";
+import opensea from "../assets/opensea.png";
+import etherscan from "../assets/etherscan.png";
+
 
 const nftInterface = new utils.Interface(abis.silo)
 const nftContract = new Contract(addresses.silo, nftInterface)
@@ -29,7 +32,7 @@ function WalletButton() {
                 navigate(`/`);
             }}
             colorScheme='purple'
-            margin='4'
+            margin='3'
             size='sm'
             variant='outline'
         >
@@ -47,16 +50,13 @@ function Between2lines() {
             <p style={{
                 borderTop: '1px solid ',
                 borderTopColor: 'rgb(256, 256, 256)',
-                margin: '20px',
+                margin: '5px',
+                marginTop: '15px',
                 width: '500px'
             }}/>
         </>
 
     );
-}
-
-function wait() {
-    console.log("10s wait to approve");
 }
 
 
@@ -91,41 +91,42 @@ export function Nft() {
     let supply = tabIssuer[4];
 
     let price = tabNFT[0];
+    let metaNFT = tabNFT[3];
+
+    const etherscanUrl = "https://rinkeby.etherscan.io/address/" + addresses.silo;
 
     return (
         <Container>
             <Body>
 
-                <p style={{color: '#F6CF6C', margin: '20px'}}> 🌽 WELCOME TO SILO 🌽 </p>
+                <p style={{color: '#F6CF6C', margin: '10px'}}> 🌽 WELCOME TO SILO 🌽 </p>
 
                 <Header>
                     <WalletButton/>
                 </Header>
-
-
-                <h2 style={{color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
-
-                <img src={silo} style={{
-                    width: '220px',
-                    height: '220px'
-                }}/>
-
                 <Button
 
                     onClick={() => {
                         getDai();
                     }}
                     colorScheme='yellow'
-                    margin='4'
+                    margin='3'
                     size='sm'
                     variant='outline'
                 >
                     Get some DAI
                 </Button>
-
                 <Between2lines/>
-                <h3 style={{margin: '10px'}}>Supply : {supply}</h3>
-                <h3 style={{margin: '10px'}}>Price for one share : {price}</h3>
+
+                <h2 style={{fontSize: '30px', color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
+
+                <img src={silo} style={{
+                    width: '220px',
+                    height: '220px'
+                }}/>
+
+                <p style={{fontSize: '18px', marginTop: '10px'}}>Supply : {supply}</p>
+                <p style={{fontSize: '18px', margin: '5px'}}>Price for one share : {price}</p>
 
                 <Button
 
@@ -141,8 +142,25 @@ export function Nft() {
                     Buy
                 </Button>
 
+                <Between2lines/>
 
-                <p><small><Link href={meta}>Metadata Company</Link></small></p>
+                <Header>
+                    <p>
+                        <smal>📜</smal>
+                    </p>
+                    <ul><small><Link variant='outline'
+                                     href={meta}>Metadata Company</Link></small></ul>
+                    <img src={etherscan} style={{
+                        width: '25px',
+                        height: '25px',
+                        marginLeft: '15px'
+                    }}/>
+                    <ul><small><Link href={etherscanUrl}>Etherscan</Link></small></ul>
+
+                    <p style={{marginLeft: '15px'}}><smal>🖼️</smal></p>
+                    <ul><small><Link href={metaNFT}>Metadata NFT</Link></small></ul>
+
+                </Header>
 
 
             </Body>
