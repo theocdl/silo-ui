@@ -39,12 +39,32 @@ function WalletButton() {
     );
 }
 
+function Between2lines() {
+
+    return (
+
+        <>
+            <p style={{
+                borderTop: '1px solid ',
+                borderTopColor: 'rgb(256, 256, 256)',
+                margin: '20px',
+                width: '500px'
+            }}/>
+        </>
+
+    );
+}
+
+function wait() {
+    console.log("10s wait to approve");
+}
+
 
 export function Nft() {
-    const params = useParams()
+    const params = useParams();
 
     const {send: buy} = useContractFunction(nftContract, 'buy');
-    const {send: approve} = useContractFunction(nftContract, 'approve');
+    const {send: approve} = useContractFunction(daitContract, 'approve');
     const {send: getDai} = useContractFunction(daitContract, 'withdraw');
 
     const {value: info} =
@@ -70,10 +90,7 @@ export function Nft() {
     let meta = tabIssuer[3];
     let supply = tabIssuer[4];
 
-    let price = tabNFT[0];
-
-
-
+    let price = parseInt(tabNFT[0]);
 
     return (
         <Container>
@@ -87,13 +104,15 @@ export function Nft() {
 
 
                 <h2 style={{color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
-                <h3 style={{margin: '20px'}}>{price}</h3>
+                <Between2lines/>
+                <h3 style={{margin: '10px'}}>Supply : {supply}</h3>
+                <h3 style={{margin: '10px'}}>Price for one share : {price}</h3>
 
                 <Button
 
-                    onClick={() => {
-                        approve(addresses.silo, price);
-                        buy(params.username);
+                    onClick={async () => {
+                        await approve(addresses.silo, price*10**18);
+                        await buy(params.username);
                     }}
                     colorScheme='purple'
                     margin='4'
@@ -103,8 +122,10 @@ export function Nft() {
                     Buy
                 </Button>
 
-                <img src={silo} style={{width: '300px',
-                    height : '300px'}}/>
+                <img src={silo} style={{
+                    width: '300px',
+                    height: '300px'
+                }}/>
 
 
                 <Button

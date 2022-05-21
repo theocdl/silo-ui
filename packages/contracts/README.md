@@ -6,7 +6,7 @@ A minimalist, opinionated structure for managing smart contract ABIs and address
 
 ## Deployment
 
-[https://rinkeby.etherscan.io/address/0xC5c7C45eEA8F11760d5e63d9CB7c7AE46B3de635](https://rinkeby.etherscan.io/address/0x61681514eA040d19dC4279301aDC10bf654D886A)
+[https://rinkeby.etherscan.io/address/0x9C569C5Ee9814F0cc6f7811161518103eCfaD757#code](https://rinkeby.etherscan.io/address/0x9C569C5Ee9814F0cc6f7811161518103eCfaD757#code)
 
 ## Solidity contract
 
@@ -43,7 +43,7 @@ contract Silo is ERC721, ERC721URIStorage {
         mapping(uint256 => Item) item;
     }
 
-    uint256 numIssuer = 0;
+    uint256 public numIssuer = 0;
     mapping(uint256 => Issuer) public issuer;
 
     event NewIssuer(
