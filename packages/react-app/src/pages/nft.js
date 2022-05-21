@@ -2,12 +2,12 @@ import {Button, Input} from '@chakra-ui/react'
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useParams} from 'react-router-dom';
-import {Body, Container, Header} from "../components";
+import {Body, Container, Header, Link} from "../components";
 import {Contract} from '@ethersproject/contracts'
 import {addresses, abis} from "@my-app/contracts";
 import {FaEthereum} from "react-icons/fa";
 import {useCall, useContractFunction, useEthers} from "@usedapp/core";
-import {utils} from "ethers";
+import {ethers, utils} from "ethers";
 import silo from "../assets/silo.png";
 
 const nftInterface = new utils.Interface(abis.silo)
@@ -90,7 +90,7 @@ export function Nft() {
     let meta = tabIssuer[3];
     let supply = tabIssuer[4];
 
-    let price = parseInt(tabNFT[0]);
+    let price = tabNFT[0];
 
     return (
         <Container>
@@ -104,29 +104,11 @@ export function Nft() {
 
 
                 <h2 style={{color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
-                <Between2lines/>
-                <h3 style={{margin: '10px'}}>Supply : {supply}</h3>
-                <h3 style={{margin: '10px'}}>Price for one share : {price}</h3>
-
-                <Button
-
-                    onClick={async () => {
-                        await approve(addresses.silo, price*10**18);
-                        await buy(params.username);
-                    }}
-                    colorScheme='purple'
-                    margin='4'
-                    size='lg'
-                    variant='outline'
-                >
-                    Buy
-                </Button>
 
                 <img src={silo} style={{
-                    width: '300px',
-                    height: '300px'
+                    width: '220px',
+                    height: '220px'
                 }}/>
-
 
                 <Button
 
@@ -140,6 +122,29 @@ export function Nft() {
                 >
                     Get some DAI
                 </Button>
+
+                <Between2lines/>
+                <h3 style={{margin: '10px'}}>Supply : {supply}</h3>
+                <h3 style={{margin: '10px'}}>Price for one share : {price}</h3>
+
+                <Button
+
+                    onClick={async () => {
+                        await approve(addresses.silo, ethers.utils.parseEther(price));
+                        await buy(params.username);
+                    }}
+                    colorScheme='purple'
+                    margin='4'
+                    size='lg'
+                    variant='outline'
+                >
+                    Buy
+                </Button>
+
+
+                <p><small><Link href={meta}>Metadata Company</Link></small></p>
+
+
             </Body>
         </Container>
     );
