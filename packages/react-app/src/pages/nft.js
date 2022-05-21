@@ -126,7 +126,7 @@ export function Nft() {
                 }}/>
 
                 <p style={{fontSize: '18px', marginTop: '10px'}}>Supply : {supply}</p>
-                <p style={{fontSize: '18px', margin: '5px'}}>Price for one share : {price}</p>
+                <p style={{fontSize: '18px', margin: '5px'}}>Price for one share : {price} DAI</p>
 
                 <Button
 
