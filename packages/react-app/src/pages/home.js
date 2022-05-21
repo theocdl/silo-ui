@@ -232,7 +232,7 @@ export function Home() {
                     margin: '20px',
                     width: '500px'
                 }}/>
-                <p style={{color: '#F6CF6C', margin: '20px'}}> All the company who are register </p>
+                <p style={{color: '#F6CF6C', margin: '20px'}}> All the company who are register and who have NFT to sell</p>
 
                 <Issuer/>
 
