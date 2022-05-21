@@ -119,12 +119,13 @@ export function Nft() {
 
                 <h2 style={{fontSize: '30px', color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
 
-                <img src={silo} style={{
+                {/* <img src={silo} style={{
                     width: '220px',
                     height: '220px'
-                }}/>
+                }}/> */}
 
                 <p style={{fontSize: '18px', marginTop: '10px'}}>Supply : {supply}</p>
+
                 {supply !== "0" && <p style={{fontSize: '18px', margin: '5px'}}>Price for one share : {price} DAI</p>}
 
                 <Button
@@ -145,21 +146,21 @@ export function Nft() {
 
                 <Header>
                     <p>
-                        <smal>📜</smal>
+                        <small>📜</small>
                     </p>
                     <ul><small><Link variant='outline'
-                                     href={meta}>Metadata Company</Link></small></ul>
-                    <img src={etherscan} style={{
+                                     href={meta}>Company info</Link></small> | </ul>
+                    {/* <img src={etherscan} style={{
                         width: '25px',
                         height: '25px',
                         marginLeft: '15px'
-                    }}/>
-                    <ul><small><Link href={etherscanUrl}>Etherscan</Link></small></ul>
+                    }}/> */}
+                    <ul><small><Link href={etherscanUrl}>Etherscan link</Link></small> | </ul>
 
                     <p style={{marginLeft: '15px'}}>
-                        <smal>🖼️</smal>
+                        <small>🖼️</small>
                     </p>
-                    <ul><small><Link href={metaNFT}>Metadata NFT</Link></small></ul>
+                    <ul><small><Link href={metaNFT}>NFT metadata </Link></small></ul>
 
                 </Header>
 
