@@ -152,6 +152,7 @@ function Issuer() {
         if (supplyNFT !== "0") {
             issuer.push(<Button
                 onClick={() => {
+                    window.scrollTo(0, 0);
                     navigate(`/nft/${tableIssuer[i][1] }`)
                 }}
                 colorScheme='blue'
@@ -208,15 +209,15 @@ function Sell() {
 
             <Input onChange={idInput}
                    margin='4'
-                   type="text" placeholder="ID of your NFT"/>
+                   type="text" placeholder="NFT ID"/>
 
             <Input onChange={nameInput}
                    margin='4'
-                   type="text" placeholder="Name of the company who create the NFT"/>
+                   type="text" placeholder="Name of the provider"/>
 
             <Input onChange={infoInput}
                    margin='2'
-                   type="text" placeholder="New information of the NFT with your details"/>
+                   type="text" placeholder="NFT new metadata"/>
 
             <Button
                 onClick={() => {

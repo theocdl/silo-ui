@@ -91,6 +91,17 @@ export function IssuerDashboard() {
         setPrice(event.target.value);
     };
 
+    async function makeCompanyInfo(name) {
+
+        console.log("name: ", name);
+
+
+
+
+        const uri = "https://ato-nft.mypinata.cloud/ipfs/QmTNCBMiubsSszDVEEiLQkvb3hvPBacngSY7HGaZ5RgsNA"
+        return uri
+    }
+
     return (
         <Container>
             <Header>
@@ -114,17 +125,17 @@ export function IssuerDashboard() {
                                margin='4'
                                type="text" placeholder="Name"/>
 
-                        <Input onChange={infoInput}
+                        {/* <Input onChange={infoInput}
                                margin='2'
-                               type="text" placeholder="Compagny Information "/>
+                               type="text" placeholder="Compagny info"/>
                         <p style={{fontSize: '10px', fontStyle: 'italic'}}>
-                            *You have to put an IPFS link to a .json file
-                        </p>
+                            * must be a url pointing to a .json file
+                        </p> */}
 
                         <Button
                             onClick={() => {
                                 console.log(name, info);
-                                addIssuer(name, info);
+                                addIssuer(name, makeCompanyInfo(name));
                             }}
                             leftIcon={<FaEthereum/>}
                             colorScheme='purple'
@@ -144,7 +155,7 @@ export function IssuerDashboard() {
 
                         <Input onChange={numCompanyInput}
                                margin='4'
-                               type="text" placeholder="Number of the company"/>
+                               type="text" placeholder="Company ID"/>
 
                         <Input onChange={supplyInput}
                                margin='4'
@@ -156,7 +167,7 @@ export function IssuerDashboard() {
 
                         <Input onChange={infoInput}
                                margin='2'
-                               type="text" placeholder="Information of the NFT"/>
+                               type="text" placeholder="NFT Metadata"/>
                         <p style={{fontSize: '10px', fontStyle: 'italic'}}>
                             *You have to put an IPFS link to a .json file
                         </p>
@@ -177,18 +188,17 @@ export function IssuerDashboard() {
                         <Links></Links>
 
                         <Between2lines/>
-                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle: 'Italic', fontSize: '40'}}>Change the
-                            Information of the company</p>
+                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle: 'Italic', fontSize: '40'}}>Update the company info</p>
 
                         <Input onChange={numCompanyInput}
                                margin='4'
-                               type="text" placeholder="Number of the company"/>
+                               type="text" placeholder="Company number"/>
 
                         <Input onChange={infoInput}
                                margin='2'
-                               type="text" placeholder="New Information of the compagny"/>
+                               type="text" placeholder="New compagny info"/>
                         <p style={{fontSize: '10px', fontStyle: 'italic'}}>
-                            *You have to put an IPFS link to a .json file
+                            * Must be a url pointing to a .json file
                         </p>
 
                         <Button
@@ -202,11 +212,11 @@ export function IssuerDashboard() {
                             size='sm'
                             variant='outline'
                         >
-                            Change company information
+                            Update company info
                         </Button>
 
                         <Between2lines/>
-                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle: 'Italic', fontSize: '40'}}>Change the
+                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle: 'Italic', fontSize: '40'}}>Update the
                             price of this NFT</p>
 
                         <Input onChange={numCompanyInput}
@@ -236,7 +246,7 @@ export function IssuerDashboard() {
 
                         <Input onChange={numCompanyInput}
                                margin='4'
-                               type="text" placeholder="Number of the NFT"/>
+                               type="text" placeholder="NFT number"/>
 
                         <p style={{fontSize: '12px', fontStyle: 'italic'}}>When you send an order to a customer use this
                             function to burn the NFT of the order</p>
