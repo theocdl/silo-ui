@@ -82,13 +82,14 @@ function Issuer() {
 
     const navigate = useNavigate();
 
-    // const {value: numberOfIssuer} =
-    // useCall({
-    //     contract: new Contract(addresses.silo, abis.silo),
-    //     method: "numIssuer",
-    // }) ?? {};
-    // let number = parseInt(numberOfIssuer) - 1;
-    // console.log(number)
+    const {value: numberOfIssuer} =
+    useCall({
+        contract: new Contract(addresses.silo, abis.silo),
+        method: "numIssuer",
+    }) ?? {};
+    let number = parseInt(numberOfIssuer) - 1;
+    console.log(number)
+
     let issuer = [];
     let tableIssuer = [];
 
@@ -136,7 +137,7 @@ function Issuer() {
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
         method: "issuer",
-        args: [5],
+        args: [number],
     }) ?? {};
     tableIssuer.push(info6);
 
