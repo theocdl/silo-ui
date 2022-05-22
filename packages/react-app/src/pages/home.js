@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Body, Container, Header} from "../components";
 //import {Mint} from '../components/mint'
-import {Button, Input, ListItem, UnorderedList, Image} from '@chakra-ui/react'
+import {Button, Input, ListItem, UnorderedList, Image, h1} from '@chakra-ui/react'
 import {Contract} from '@ethersproject/contracts'
 import {useEthers, useCall, shortenAddress, useLookupAddress, useContractFunction} from '@usedapp/core'
 import {addresses, abis} from "@my-app/contracts";
@@ -155,7 +155,6 @@ function Issuer() {
                 }}
                 colorScheme='blue'
                 
-                margin='4'
                 size='md'
                 variant='outline'
             >
@@ -164,17 +163,10 @@ function Issuer() {
         }
     }
 
-        const numbers = [0, 1, 2, 3, 4];
+        // TODO: replace this array with length
+        const numbers = [0, 1, 2, 3, 4, 5, 6];
+
         const listItems = numbers.map((number) =>
-          
-        //   {
-        //     issuer[number] === null || issuer[number] === undefined ?
-        //     <p></p>
-        //     :
-        //     <ListItem key={number.toString()}>
-        //     {issuer[number]}
-        //   </ListItem>
-        //   }
 
         <ListItem key={number.toString()}>
             {issuer[number]}
@@ -236,7 +228,7 @@ function Sell() {
                 size='sm'
                 variant='outline'
             >
-                Sell
+                Redeem
             </Button>
         </>
     );
@@ -276,7 +268,7 @@ export function Home() {
                 <Image src={silo}/>
 
                 <p style={{color: 'black'}}>.</p>
-                {isRegistered === undefined && <Loader src={loader}/>}
+                {isRegistered === undefined && <h1>Switch your network to <strong>Rinkeby</strong>, please.</h1>}
                 {isRegistered === true && <p>You are registered! ✨</p>}
                 {isRegistered === false && <p>You are NOT registered.</p>}
 
@@ -289,7 +281,7 @@ export function Home() {
                     size='md'
                     variant='outline'
                 >
-                    Company
+                    My dashboard
                 </Button>
 
                 <p style={{

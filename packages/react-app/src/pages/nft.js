@@ -100,8 +100,19 @@ export function Nft() {
             <Header>
                 <WalletButton/>
             </Header>
-            <p style={{color: '#F6CF6C', fontSize: '25px', textAlign: 'center'}}> 🌽 WELCOME TO SILO 🌽 </p>
+           
             <Body>
+
+                <h2 style={{fontSize: '30px', color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
+
+                <Image src={silo} style={{
+                    width: '220px',
+                    height: '220px'
+                }}/>
+
+                <p style={{fontSize: '18px', marginTop: '10px'}}>Supply : {supply}</p>
+
+                {supply !== "0" && <p style={{fontSize: '18px', margin: '5px'}}>Price for one share : {price} DAI</p>}
 
                 <Button
 
@@ -115,19 +126,7 @@ export function Nft() {
                 >
                     Get some DAI
                 </Button>
-                <Between2lines/>
-
-                <h2 style={{fontSize: '30px', color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
-
-                <Image src={silo} style={{
-                    width: '220px',
-                    height: '220px'
-                }}/>
-
-                <p style={{fontSize: '18px', marginTop: '10px'}}>Supply : {supply}</p>
-
-                {supply !== "0" && <p style={{fontSize: '18px', margin: '5px'}}>Price for one share : {price} DAI</p>}
-
+                
                 <Button
 
                     onClick={async () => {

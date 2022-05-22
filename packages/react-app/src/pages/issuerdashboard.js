@@ -1,7 +1,7 @@
 import {Button, Input} from '@chakra-ui/react'
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Body, Container, Header} from "../components";
+import {Body, Container, Header, Links} from "../components";
 import {Contract} from '@ethersproject/contracts'
 import {addresses, abis} from "@my-app/contracts";
 import {FaEthereum} from "react-icons/fa";
@@ -134,6 +134,7 @@ export function IssuerDashboard() {
                         >
                             Register
                         </Button>
+                        <Links></Links>
                     </>
                 }
                 {isRegistered === true &&
@@ -173,6 +174,7 @@ export function IssuerDashboard() {
                         >
                             Create
                         </Button>
+                        <Links></Links>
 
                         <Between2lines/>
                         <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle: 'Italic', fontSize: '40'}}>Change the
@@ -205,11 +207,11 @@ export function IssuerDashboard() {
 
                         <Between2lines/>
                         <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle: 'Italic', fontSize: '40'}}>Change the
-                            price for the NFT</p>
+                            price of this NFT</p>
 
                         <Input onChange={numCompanyInput}
                                margin='4'
-                               type="text" placeholder="Number of the company"/>
+                               type="text" placeholder="Company number"/>
 
                         <Input onChange={priceInput}
                                margin='2'
@@ -251,6 +253,7 @@ export function IssuerDashboard() {
                         >
                             Redeem
                         </Button>
+                        <Links></Links>
                     </>
                 }
             </Body>
