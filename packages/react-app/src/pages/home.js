@@ -1,12 +1,12 @@
 import {useEffect, useState} from "react";
 import {Body, Container, Header} from "../components";
 //import {Mint} from '../components/mint'
-import {Button, Input, ListItem, UnorderedList, Image, h1} from '@chakra-ui/react'
+import {Button, Input, ListItem, UnorderedList, Image} from '@chakra-ui/react'
 import {Contract} from '@ethersproject/contracts'
 import {useEthers, useCall, shortenAddress, useLookupAddress, useContractFunction} from '@usedapp/core'
 import {addresses, abis} from "@my-app/contracts";
-import {Loader} from "../components";
-import loader from "../assets/reggae-loader.svg";
+// import {Loader} from "../components";
+// import loader from "../assets/reggae-loader.svg";
 import silo from "../assets/ble.jpg";
 import {useNavigate} from "react-router-dom";
 import {FaEthereum} from "react-icons/fa";
@@ -77,17 +77,18 @@ function Between2lines() {
 
 function Issuer() {
     let nameIssuer;
-    let nameIssuerNumber;
+    // let nameIssuerNumber;
     let supplyNFT;
 
     const navigate = useNavigate();
 
-    const {value: numberOfIssuer} =
-    useCall({
-        contract: new Contract(addresses.silo, abis.silo),
-        method: "numIssuer",
-    }) ?? {};
-    let number = parseInt(numberOfIssuer) - 1;
+    // const {value: numberOfIssuer} =
+    // useCall({
+    //     contract: new Contract(addresses.silo, abis.silo),
+    //     method: "numIssuer",
+    // }) ?? {};
+    // let number = parseInt(numberOfIssuer) - 1;
+    // console.log(number)
     let issuer = [];
     let tableIssuer = [];
 
@@ -127,7 +128,7 @@ function Issuer() {
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
         method: "issuer",
-        args: [number - 1],
+        args: [4],
     }) ?? {};
     tableIssuer.push(info5);
 
@@ -135,7 +136,7 @@ function Issuer() {
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
         method: "issuer",
-        args: [number],
+        args: [5],
     }) ?? {};
     tableIssuer.push(info6);
 
@@ -144,7 +145,7 @@ function Issuer() {
         let infoString = String(tableIssuer[i]);
         let tab = infoString.split(",", 32);
         nameIssuer = tab[0];
-        nameIssuerNumber = tab[1];
+        // nameIssuerNumber = tab[1];
         supplyNFT = tab[4];
 
         // console.log("nameIssuerNumber: ", nameIssuerNumber)
@@ -250,7 +251,7 @@ export function Home() {
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
         method: "balanceOf",
-        args: [account],
+        args: (account === null || account === undefined) ? ["0x0000000000000000000000000000000000000000"] : [account],
     }) ?? {};
 
     if (isRegisteredRaw) {
@@ -290,7 +291,7 @@ export function Home() {
                     margin: '20px',
                     width: '500px'
                 }}/>
-                <p style={{color: '#F6CF6C', margin: '20px'}}>Crops NFTs currently for sale:</p>
+                <p style={{color: '#F6CF6C', margin: '20px'}}>Crops NFTs currently for sale: </p>
 
                 {/* {
                     isRegisteredRaw === 0 || account === undefined ?

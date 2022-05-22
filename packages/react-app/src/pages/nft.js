@@ -110,7 +110,7 @@ export function Nft() {
                     height: '220px'
                 }}/>
 
-                <p style={{fontSize: '18px', marginTop: '10px'}}>Supply : {supply}</p>
+                <p style={{fontSize: '18px', marginTop: '10px'}}>Supply: <strong>{supply}</strong></p>
 
                 {supply !== "0" && <p style={{fontSize: '18px', margin: '5px'}}>Price for one share : {price} DAI</p>}
 

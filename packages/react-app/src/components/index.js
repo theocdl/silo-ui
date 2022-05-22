@@ -55,7 +55,6 @@ export const Header = styled.header`
 `;
 
 export const Links = styled.header`
-  align-items: center;
   background-color: #000000;
   color: white;
   display: flex;
