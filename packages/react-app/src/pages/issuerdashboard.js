@@ -18,7 +18,6 @@ function WalletButton() {
 
     return (
         <Button
-
             onClick={() => {
                 navigate(`/`);
             }}
@@ -67,6 +66,7 @@ export function IssuerDashboard() {
     const {send: create} = useContractFunction(nftContract, 'create');
     const {send: changeInfo} = useContractFunction(nftContract, 'changeCompanyInfo')
     const {send: changePrice} = useContractFunction(nftContract, 'changePrice')
+    const {send: redeem} = useContractFunction(nftContract, 'redeem');
 
     const [name, setName] = useState(" ");
     const [info, setInfo] = useState(" ");
@@ -96,14 +96,19 @@ export function IssuerDashboard() {
             <Header>
                 <WalletButton/>
             </Header>
-            <p style={{color: '#F6CF6C', fontSize:'25px', textAlign: 'center'}}> 🌽 WELCOME TO SILO 🌽 </p>
+            <p style={{color: '#F6CF6C', fontSize: '25px', textAlign: 'center'}}> 🌽 WELCOME TO SILO 🌽 </p>
 
             <Body>
                 <Between2lines/>
 
                 {isRegistered === false &&
                     <>
-                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle:'Italic', fontSize:'40'}}>Register</p>
+                        <p style={{
+                            color: '#F6CF6C',
+                            font: 'Regular ',
+                            fontStyle: 'Italic',
+                            fontSize: '40'
+                        }}>Register</p>
 
                         <Input onChange={nameInput}
                                margin='4'
@@ -112,6 +117,10 @@ export function IssuerDashboard() {
                         <Input onChange={infoInput}
                                margin='2'
                                type="text" placeholder="Compagny Information "/>
+                        <p style={{fontSize: '10px', fontStyle: 'italic'}}>
+                            *You have to put an IPFS link to a .json file
+                        </p>
+
                         <Button
                             onClick={() => {
                                 console.log(name, info);
@@ -129,7 +138,8 @@ export function IssuerDashboard() {
                 }
                 {isRegistered === true &&
                     <>
-                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle:'Italic', fontSize:'40'}}>Create NFT</p>
+                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle: 'Italic', fontSize: '40'}}>Create
+                            NFT</p>
 
                         <Input onChange={numCompanyInput}
                                margin='4'
@@ -146,6 +156,9 @@ export function IssuerDashboard() {
                         <Input onChange={infoInput}
                                margin='2'
                                type="text" placeholder="Information of the NFT"/>
+                        <p style={{fontSize: '10px', fontStyle: 'italic'}}>
+                            *You have to put an IPFS link to a .json file
+                        </p>
 
                         <Button
                             onClick={() => {
@@ -162,7 +175,8 @@ export function IssuerDashboard() {
                         </Button>
 
                         <Between2lines/>
-                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle:'Italic', fontSize:'40'}}>Change the Information of the company</p>
+                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle: 'Italic', fontSize: '40'}}>Change the
+                            Information of the company</p>
 
                         <Input onChange={numCompanyInput}
                                margin='4'
@@ -171,6 +185,9 @@ export function IssuerDashboard() {
                         <Input onChange={infoInput}
                                margin='2'
                                type="text" placeholder="New Information of the compagny"/>
+                        <p style={{fontSize: '10px', fontStyle: 'italic'}}>
+                            *You have to put an IPFS link to a .json file
+                        </p>
 
                         <Button
                             onClick={() => {
@@ -187,7 +204,8 @@ export function IssuerDashboard() {
                         </Button>
 
                         <Between2lines/>
-                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle:'Italic', fontSize:'40'}}>Change the price for the NFT</p>
+                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle: 'Italic', fontSize: '40'}}>Change the
+                            price for the NFT</p>
 
                         <Input onChange={numCompanyInput}
                                margin='4'
@@ -211,10 +229,30 @@ export function IssuerDashboard() {
                             Change price
                         </Button>
 
+                        <Between2lines/>
+                        <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle: 'Italic', fontSize: '40'}}>Redeem</p>
+
+                        <Input onChange={numCompanyInput}
+                               margin='4'
+                               type="text" placeholder="Number of the NFT"/>
+
+                        <p style={{fontSize: '12px', fontStyle: 'italic'}}>When you send an order to a customer use this
+                            function to burn the NFT of the order</p>
+                        <Button
+                            onClick={() => {
+                                console.log(numCompany);
+                                redeem(numCompany);
+                            }}
+                            leftIcon={<FaEthereum/>}
+                            colorScheme='purple'
+                            margin='4'
+                            size='sm'
+                            variant='outline'
+                        >
+                            Redeem
+                        </Button>
                     </>
                 }
-
-
             </Body>
         </Container>
 
