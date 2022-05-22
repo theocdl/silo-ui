@@ -185,7 +185,7 @@ export function IssuerDashboard() {
                         >
                             Create
                         </Button>
-                        <Links></Links>
+                        {/* <Links></Links> */}
 
                         <Between2lines/>
                         <p style={{color: '#F6CF6C', font: 'Regular ', fontStyle: 'Italic', fontSize: '40'}}>Update the company info</p>
