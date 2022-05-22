@@ -150,10 +150,9 @@ function Issuer() {
         if (supplyNFT !== "0") {
             issuer.push(<Button
                 onClick={() => {
-                    navigate(`/nft/${nameIssuerNumber}`,
-                        {nameIssuerNumber})
+                    navigate(`/nft/${nameIssuerNumber}`)
                 }}
-                colorScheme='purple'
+                colorScheme='blue'
                 margin='4'
                 size='md'
                 variant='outline'
@@ -162,9 +161,9 @@ function Issuer() {
             </Button>)
         }
     }
-    return (
-        <p>{issuer}</p>
-    );
+    // return (<p key={issuer}>{issuer}</p>);
+    return (<p key={issuer}>{issuer}</p>);
+
 }
 
 function Sell() {
@@ -279,7 +278,11 @@ export function Home() {
                 <p style={{color: '#F6CF6C', margin: '20px'}}> All the company who are register and who have NFT to
                     sell</p>
 
-                <Issuer/>
+                {/* {
+                    isRegisteredRaw === 0 || account === undefined ?
+                    <p>loading...</p> : */}
+                    <Issuer/>
+                {/* } */}
 
                 {String(haveNFT) !== "0" && String(haveNFT) !== "undefined" && <Sell/>}
 

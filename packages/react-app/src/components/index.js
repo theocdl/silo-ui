@@ -54,6 +54,15 @@ export const Header = styled.header`
   min-height: 70px;
 `;
 
+export const Links = styled.header`
+  align-items: center;
+  background-color: #000000;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  min-height:700px;
+`;
 
 export const Image = styled.img`
   height: 40vmin;

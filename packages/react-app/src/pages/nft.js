@@ -2,7 +2,7 @@ import {Button, Input} from '@chakra-ui/react'
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useParams} from 'react-router-dom';
-import {Body, Container, Header, Link} from "../components";
+import {Body, Container, Header, Link, Links} from "../components";
 import {Contract} from '@ethersproject/contracts'
 import {addresses, abis} from "@my-app/contracts";
 import {FaEthereum} from "react-icons/fa";
@@ -144,7 +144,7 @@ export function Nft() {
 
                 <Between2lines/>
 
-                <Header>
+                <Links>
                     <p>
                         <small>📜</small>
                     </p>
@@ -162,7 +162,7 @@ export function Nft() {
                     </p>
                     <ul><small><Link href={metaNFT}>NFT metadata </Link></small></ul>
 
-                </Header>
+                </Links>
 
 
             </Body>
