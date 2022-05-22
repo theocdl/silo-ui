@@ -1,8 +1,8 @@
-import {Button} from '@chakra-ui/react'
+import {Button, Image} from '@chakra-ui/react'
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import {useParams} from 'react-router-dom';
-import {Body, Container, Header, Link, Links, Image} from "../components";
+import {Body, Container, Header, Link, Links} from "../components";
 import {Contract} from '@ethersproject/contracts'
 import {addresses, abis} from "@my-app/contracts";
 // import {FaEthereum} from "react-icons/fa";
@@ -105,10 +105,10 @@ export function Nft() {
 
                 <h2 style={{fontSize: '30px', color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
 
-                <Image src={silo} /*style={{
+                <Image src={silo} style={{
                     width: '220px',
                     height: '220px'
-                }}*//>
+                }}/>
 
                 <p style={{fontSize: '18px', marginTop: '10px'}}>Supply: <strong>{supply}</strong></p>
 
