@@ -37,8 +37,6 @@ function WalletButton() {
         }
     }, [error]);
 
-    activateBrowserWallet()
-
     return (
         <Button
 
