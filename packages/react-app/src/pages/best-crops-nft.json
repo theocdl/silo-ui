@@ -1,0 +1,63 @@
+{
+  "name": "One ton of wheat",
+  "author": "BestCrops",
+  "description": "You can exchange this NFT with the company BestCrops and the company is committed to delivering one ton of wheat",
+  "size": "800 by 800 pixels",
+  "media_format": "png",
+  "image": "https://ipfs.io/ipfs/QmTtB1MWCHw4EJSN2BT6CCV639FaLtkxZGvgjx84WEtE7L",
+  "resale_rights": "10",
+  "attributes": [
+    {
+      "trait_type": "Minted on",
+      "value": "Āto"
+    },
+    {
+      "trait_type": "License type",
+      "value": "Public use limited to resale"
+    },
+    {
+      "trait_type": "Resale rights (%)",
+      "value": "10"
+    },
+    {
+      "trait_type": "View licence",
+      "value": "https://ipfs.io/ipfs/<CID>"
+    }
+  ],
+  "license_details": [
+    {
+      "trait_type": "metaverse",
+      "value": "true"
+    },
+    {
+      "trait_type": "adaptation",
+      "value": "false"
+    },
+    {
+      "trait_type": "pfp",
+      "value": "true"
+    },
+    {
+      "trait_type": "...",
+      "value": "..."
+    }
+  ],
+"details_customer": [
+    {
+      "trait_type": "name_surname",
+      "value": "Ambre Claudel"
+    },
+    {
+      "trait_type": "phonenumber",
+      "value": "+33 6 06 06 06 06"
+    },
+    {
+      "trait_type": "adress",
+      "value": "2 rue du Générale de Gaule, 75015 PARIS"
+    },
+    {
+      "trait_type": "...",
+      "value": "..."
+    }
+  ],
+}
