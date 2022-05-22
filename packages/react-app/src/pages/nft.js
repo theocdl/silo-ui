@@ -10,7 +10,7 @@ import {useCall, useContractFunction} from "@usedapp/core";
 import {ethers, utils} from "ethers";
 import silo from "../assets/silo.jpg";
 // import opensea from "../assets/opensea.jpg";
-import etherscan from "../assets/etherscan.jpg";
+//import etherscan from "../assets/etherscan.jpg";
 
 
 const nftInterface = new utils.Interface(abis.silo)
