@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Body, Container, Header} from "../components";
 //import {Mint} from '../components/mint'
-import {Button, Input} from '@chakra-ui/react'
+import {Button, Input, ListItem, UnorderedList, Image} from '@chakra-ui/react'
 import {Contract} from '@ethersproject/contracts'
 import {useEthers, useCall, shortenAddress, useLookupAddress, useContractFunction} from '@usedapp/core'
 import {addresses, abis} from "@my-app/contracts";
@@ -147,12 +147,14 @@ function Issuer() {
         nameIssuerNumber = tab[1];
         supplyNFT = tab[4];
 
+        // console.log("nameIssuerNumber: ", nameIssuerNumber)
         if (supplyNFT !== "0") {
             issuer.push(<Button
                 onClick={() => {
-                    navigate(`/nft/${nameIssuerNumber}`)
+                    navigate(`/nft/${tableIssuer[i][1] }`)
                 }}
                 colorScheme='blue'
+                
                 margin='4'
                 size='md'
                 variant='outline'
@@ -161,9 +163,28 @@ function Issuer() {
             </Button>)
         }
     }
-    // return (<p key={issuer}>{issuer}</p>);
-    return (<p key={issuer}>{issuer}</p>);
 
+        const numbers = [0, 1, 2, 3, 4];
+        const listItems = numbers.map((number) =>
+          
+        //   {
+        //     issuer[number] === null || issuer[number] === undefined ?
+        //     <p></p>
+        //     :
+        //     <ListItem key={number.toString()}>
+        //     {issuer[number]}
+        //   </ListItem>
+        //   }
+
+        <ListItem key={number.toString()}>
+            {issuer[number]}
+           </ListItem>
+          
+        );
+        return (
+          <UnorderedList>{listItems}</UnorderedList>
+        );
+      
 }
 
 function Sell() {
@@ -187,7 +208,9 @@ function Sell() {
     return (
         <>
             <Between2lines/>
-            <p style={{color: '#F6CF6C', margin: '20px'}}> Sell your NFT to the company to receive your order ! </p>
+            {/* <p style={{color: '#F6CF6C', margin: '20px'}}> Sell your NFT to the company to receive your order! </p> */}
+            <p style={{color: '#F6CF6C', margin: '20px'}}> Redeem your NFT:</p>
+
 
 
             <Input onChange={idInput}
@@ -250,7 +273,7 @@ export function Home() {
             <p style={{color: '#F6CF6C', fontSize: '25px', textAlign: 'center'}}> 🌽 WELCOME TO SILO 🌽 </p>
             <Body>
 
-                <img src={silo}/>
+                <Image src={silo}/>
 
                 <p style={{color: 'black'}}>.</p>
                 {isRegistered === undefined && <Loader src={loader}/>}
@@ -259,7 +282,7 @@ export function Home() {
 
                 <Button
                     onClick={() => {
-                        navigate(`/issuerDa`);
+                        navigate(`/dashboard`);
                     }}
                     colorScheme='purple'
                     margin='4'
@@ -275,8 +298,7 @@ export function Home() {
                     margin: '20px',
                     width: '500px'
                 }}/>
-                <p style={{color: '#F6CF6C', margin: '20px'}}> All the company who are register and who have NFT to
-                    sell</p>
+                <p style={{color: '#F6CF6C', margin: '20px'}}>Crops NFTs currently for sale:</p>
 
                 {/* {
                     isRegisteredRaw === 0 || account === undefined ?
