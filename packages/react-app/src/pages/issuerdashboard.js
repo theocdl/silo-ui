@@ -228,7 +228,7 @@ export function IssuerDashboard() {
                 const cid = await client.put(makeFileObjects());
                
 
-                const uri = "ato-nft.mypinata.cloud/ipfs/" + cid + "/wheat.json";
+                const uri = "https://ato-nft.mypinata.cloud/ipfs/" + cid + "/wheat.json";
                 
                 console.log("👋 Hello! ");
                 makeStorageClient();
