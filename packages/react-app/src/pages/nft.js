@@ -149,11 +149,9 @@ export function Nft() {
                     </p>
                     <ul><small><Link variant='outline'
                                      href={meta}>Company info</Link></small> | </ul>
-                    <Image src={etherscan} style={{
-                        width: '25px',
-                        height: '25px',
-                        marginLeft: '15px'
-                    }}/>
+                    <p style={{marginLeft: '15px'}}>
+                        <small>🌐</small>
+                    </p>
                     <ul><small><Link href={etherscanUrl}>Etherscan link</Link></small> | </ul>
 
                     <p style={{marginLeft: '15px'}}>
