@@ -88,35 +88,79 @@ function Issuer() {
         method: "numIssuer",
     }) ?? {};
     let number = parseInt(numberOfIssuer) - 1;
-    number = 1;
     let issuer = [];
+    let tableIssuer = [];
 
-    const {value: info} =
+    const {value: info1} =
+    useCall({
+        contract: new Contract(addresses.silo, abis.silo),
+        method: "issuer",
+        args: [0],
+    }) ?? {};
+    tableIssuer.push(info1);
+
+    const {value: info2} =
+    useCall({
+        contract: new Contract(addresses.silo, abis.silo),
+        method: "issuer",
+        args: [1],
+    }) ?? {};
+    tableIssuer.push(info2);
+
+    const {value: info3} =
+    useCall({
+        contract: new Contract(addresses.silo, abis.silo),
+        method: "issuer",
+        args: [2],
+    }) ?? {};
+    tableIssuer.push(info3);
+
+    const {value: info4} =
+    useCall({
+        contract: new Contract(addresses.silo, abis.silo),
+        method: "issuer",
+        args: [3],
+    }) ?? {};
+    tableIssuer.push(info4);
+
+    const {value: info5} =
+    useCall({
+        contract: new Contract(addresses.silo, abis.silo),
+        method: "issuer",
+        args: [number - 1],
+    }) ?? {};
+    tableIssuer.push(info5);
+
+    const {value: info6} =
     useCall({
         contract: new Contract(addresses.silo, abis.silo),
         method: "issuer",
         args: [number],
     }) ?? {};
+    tableIssuer.push(info6);
 
-    let infoString = String(info);
-    let tab = infoString.split(",", 32);
-    nameIssuer = tab[0];
-    nameIssuerNumber = tab[1];
-    supplyNFT = tab[4];
 
-    if (supplyNFT !== "0") {
-        issuer.push(<Button
-            onClick={() => {
-                navigate(`/nft/${nameIssuerNumber}`,
-                    {nameIssuerNumber})
-            }}
-            colorScheme='purple'
-            margin='4'
-            size='md'
-            variant='outline'
-        >
-            {nameIssuer}
-        </Button>)
+    for (let i = 0; i < tableIssuer.length; i++) {
+        let infoString = String(tableIssuer[i]);
+        let tab = infoString.split(",", 32);
+        nameIssuer = tab[0];
+        nameIssuerNumber = tab[1];
+        supplyNFT = tab[4];
+
+        if (supplyNFT !== "0") {
+            issuer.push(<Button
+                onClick={() => {
+                    navigate(`/nft/${nameIssuerNumber}`,
+                        {nameIssuerNumber})
+                }}
+                colorScheme='purple'
+                margin='4'
+                size='md'
+                variant='outline'
+            >
+                {nameIssuer}
+            </Button>)
+        }
     }
     return (
         <p>{issuer}</p>
@@ -232,11 +276,12 @@ export function Home() {
                     margin: '20px',
                     width: '500px'
                 }}/>
-                <p style={{color: '#F6CF6C', margin: '20px'}}> All the company who are register and who have NFT to sell</p>
+                <p style={{color: '#F6CF6C', margin: '20px'}}> All the company who are register and who have NFT to
+                    sell</p>
 
                 <Issuer/>
 
-                {String(haveNFT) !== "0" && String(haveNFT) !=="undefined" && <Sell/>}
+                {String(haveNFT) !== "0" && String(haveNFT) !== "undefined" && <Sell/>}
 
             </Body>
         </Container>
