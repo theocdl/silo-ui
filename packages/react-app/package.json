@@ -1,7 +1,7 @@
 {
   "name": "@my-app/react-app",
   "version": "1.0.0",
-  "homepage": "./home",
+  "homepage": "./",
   "browserslist": {
     "production": [
       ">0.2%",
