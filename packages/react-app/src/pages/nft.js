@@ -105,10 +105,10 @@ export function Nft() {
 
                 <h2 style={{fontSize: '30px', color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
 
-                <Image src={picture} /*style={{
+                <Image src={picture} style={{
                     width: '220px',
                     height: '220px'
-                }}*//>
+                }}/>
 
                 <p style={{fontSize: '18px', marginTop: '10px'}}>Supply: <strong>{supply}</strong></p>
 
