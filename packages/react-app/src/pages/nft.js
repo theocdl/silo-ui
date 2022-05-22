@@ -1,15 +1,15 @@
-import {Button, Input} from '@chakra-ui/react'
-import React, {useState} from "react";
+import {Button} from '@chakra-ui/react'
+import React from "react";
 import {useNavigate} from "react-router-dom";
 import {useParams} from 'react-router-dom';
-import {Body, Container, Header, Link, Links} from "../components";
+import {Body, Container, Header, Link, Links, Image} from "../components";
 import {Contract} from '@ethersproject/contracts'
 import {addresses, abis} from "@my-app/contracts";
-import {FaEthereum} from "react-icons/fa";
-import {useCall, useContractFunction, useEthers} from "@usedapp/core";
+// import {FaEthereum} from "react-icons/fa";
+import {useCall, useContractFunction} from "@usedapp/core";
 import {ethers, utils} from "ethers";
 import silo from "../assets/silo.png";
-import opensea from "../assets/opensea.png";
+// import opensea from "../assets/opensea.png";
 import etherscan from "../assets/etherscan.png";
 
 
@@ -119,10 +119,10 @@ export function Nft() {
 
                 <h2 style={{fontSize: '30px', color: '#F6CF6C', margin: '20px'}}><strong>{name}</strong></h2>
 
-                {/* <img src={silo} style={{
+                <Image src={silo} style={{
                     width: '220px',
                     height: '220px'
-                }}/> */}
+                }}/>
 
                 <p style={{fontSize: '18px', marginTop: '10px'}}>Supply : {supply}</p>
 
@@ -150,11 +150,11 @@ export function Nft() {
                     </p>
                     <ul><small><Link variant='outline'
                                      href={meta}>Company info</Link></small> | </ul>
-                    {/* <img src={etherscan} style={{
+                    <Image src={etherscan} style={{
                         width: '25px',
                         height: '25px',
                         marginLeft: '15px'
-                    }}/> */}
+                    }}/>
                     <ul><small><Link href={etherscanUrl}>Etherscan link</Link></small> | </ul>
 
                     <p style={{marginLeft: '15px'}}>
