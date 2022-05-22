@@ -7,8 +7,7 @@ import {addresses, abis} from "@my-app/contracts";
 import {FaEthereum} from "react-icons/fa";
 import {useCall, useContractFunction, useEthers} from "@usedapp/core";
 import {utils} from "ethers";
-
-
+import { Web3Storage } from 'web3.storage/dist/bundle.esm.min.js';
 const nftInterface = new utils.Interface(abis.silo)
 const nftContract = new Contract(addresses.silo, nftInterface)
 
@@ -95,12 +94,151 @@ export function IssuerDashboard() {
 
         console.log("name: ", name);
 
+        function getAccessToken() {
+                    console.log("✅ getAccessToken")            
+                    return process.env.REACT_APP_WEB3STORAGE_TOKEN;
+                }
+                
+                function makeStorageClient() {
+                    console.log("✅ makeStorageClient");
+                    return new Web3Storage({ token: getAccessToken() });
+                }
+                
+                function makeFileObjects() {
+                    console.log("✅ makeFileObjects");
+                    const obj = {
+                        "name": name,
+                        "description": "Cropper",
+                        "address": "",
+                        "city": "",
+                        "zipcode": "",
+                        "country": "",
+                        "contrat": "",
+                        "info": ""
+                      };
+                    const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+                
+                    const files = [
+                    new File(['contents-of-file-1'], 'plain-utf8.txt'),
+                    new File([blob], 'lode-runner.json')
+                    ];
+                    return files;
+                }
+                
+                // async function storeFiles(files) {
+                //     console.log("✅ storeFiles");
+                //     const client = makeStorageClient();
+                //     const cid = await client.put(files);
+                //     console.log('✅ stored files with CID: ', cid, "🎉");
+                //     return cid;
+                // }
+
+                const client = makeStorageClient();
+                const cid = await client.put(makeFileObjects());
+                //     console.log('✅ stored files with CID: ', cid, "🎉");
+                //     return cid;
+
+                const uri = "https://ipfs.io/ipfs/" + cid;
+                
+                console.log("👋 Hello! ");
+                makeStorageClient();
+                // const uri = await storeFiles(makeFileObjects()) + "/lode-runner.json";
+                console.log("✅ uri: ", uri );
 
 
 
-        const uri = "https://ato-nft.mypinata.cloud/ipfs/QmTNCBMiubsSszDVEEiLQkvb3hvPBacngSY7HGaZ5RgsNA"
+
+
+
+        //const uri = "https://ato-nft.mypinata.cloud/ipfs/QmTNCBMiubsSszDVEEiLQkvb3hvPBacngSY7HGaZ5RgsNA"
         return uri
     }
+
+    async function makeNftMetadata(name) {
+
+        console.log("name: ", name);
+
+        function getAccessToken() {
+                    console.log("✅ getAccessToken")            
+                    return process.env.REACT_APP_WEB3STORAGE_TOKEN;
+                }
+                
+                function makeStorageClient() {
+                    console.log("✅ makeStorageClient");
+                    return new Web3Storage({ token: getAccessToken() });
+                }
+                
+                function makeFileObjects() {
+                    console.log("✅ makeFileObjects");
+                    const obj = {
+                        "name": name,
+                        "author": "BestCrops",
+                        "description": "You can exchange this NFT with the company BestCrops who's committed to deliver one ton of wheat when th NFT is redeemed. \n \nThis NFT can be redeemed at https://silo-app.netlify.app/ \n \nhttps://rinkeby.etherscan.io/address/0x9c569c5ee9814f0cc6f7811161518103ecfad757#code",
+                        "image": "https://ato-nft.mypinata.cloud/ipfs/QmbGL19r5rYTrLGuPpKmMmst1x4LSzTnKcQgFQXHH8Bxj9",
+                        "resale_rights": "1",
+                        "attributes": [
+                          {
+                            "trait_type": "Minted on",
+                            "value": "Silo"
+                          },
+                          {
+                            "trait_type": "License type",
+                            "value": "Public use limited to resale"
+                          },
+                          {
+                            "trait_type": "Resale rights (%)",
+                            "value": "1"
+                          },
+                          {
+                            "trait_type": "View licence",
+                            "value": "https://ipfs.io/ipfs/<CID>"
+                          }
+                        ],
+                        "license_details": [
+                          {
+                            "trait_type": "metaverse",
+                            "value": "true"
+                          },
+                          {
+                            "trait_type": "adaptation",
+                            "value": "false"
+                          },
+                          {
+                            "trait_type": "pfp",
+                            "value": "true"
+                          },
+                          {
+                            "trait_type": "...",
+                            "value": "..."
+                          }
+                        ]
+                      };
+                    const blob = new Blob([JSON.stringify(obj)], {type : 'application/json'});
+                
+                    const files = [
+                    new File(['contents-of-file-1'], 'plain-utf8.txt'),
+                    new File([blob], 'wheat.json')
+                    ];
+                    return files;
+                }
+                
+                
+
+                const client = makeStorageClient();
+                const cid = await client.put(makeFileObjects());
+               
+
+                const uri = "ato-nft.mypinata.cloud/ipfs/" + cid + "/wheat.json";
+                
+                console.log("👋 Hello! ");
+                makeStorageClient();
+                // const uri = await storeFiles(makeFileObjects()) + "/lode-runner.json";
+
+                return uri;
+            }
+
+
+
 
     return (
         <Container>
@@ -165,17 +303,18 @@ export function IssuerDashboard() {
                                margin='4'
                                type="text" placeholder="Price"/>
 
-                        <Input onChange={infoInput}
+                        {/* <Input onChange={infoInput}
                                margin='2'
                                type="text" placeholder="NFT Metadata"/>
                         <p style={{fontSize: '10px', fontStyle: 'italic'}}>
                             *You have to put an IPFS link to a .json file
-                        </p>
+                        </p> */}
 
                         <Button
                             onClick={() => {
                                 console.log(numCompany, supply, price, info);
-                                create(numCompany, supply, price, info);
+                                
+                                create(numCompany, supply, price, makeNftMetadata());
                             }}
                             leftIcon={<FaEthereum/>}
                             colorScheme='purple'
